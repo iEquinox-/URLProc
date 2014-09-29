@@ -10,7 +10,7 @@ class Wrap:
 
 		self.exceptions = ["cloudflare.com"]
 		self.socket     = socket.socket()
-		self.ssl_file   = "sslkeys.pem"
+		self.ssl_file   = "/home/equinox/Desktop/sslkeys.pem"
 
 	def Attempt(self):
 		try:
@@ -33,3 +33,14 @@ class Wrap:
 		except Exception as e:
 			print "Error parsed; " + str(e)
 			quit()
+
+	def Get(self):
+		c = ssl.wrap_socket(
+			self.socket,
+			cert_reqs   = ssl.CERT_REQUIRED,
+			ssl_version = ssl.PROTOCOL_SSLv3,
+			ca_certs    = self.ssl_file
+			)
+		c.connect((self.url,443))
+		certificate = c.getpeercert()
+		return certificate
