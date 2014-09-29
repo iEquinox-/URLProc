@@ -10,7 +10,7 @@ class Wrap:
 
 		self.exceptions = ["cloudflare.com"]
 		self.socket     = socket.socket()
-		self.ssl_file   = "/home/equinox/Desktop/sslkeys.pem"
+		self.ssl_file   = "sslkeys.pem"
 
 	def Attempt(self):
 		try:
